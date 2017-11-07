@@ -1,0 +1,38 @@
+.ImagenPlato{
+	height: 80px;
+	width: 80px;
+	float: left;
+}
+.Plato-Menu{
+	max-height: 500px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.Pedidos-Menu{
+	max-height: 600px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.TitlePlato{
+	margin-top: 0;
+	text-align: left;
+}
+.DescripcionPlato{
+	text-align: justify;
+}
+.PrecioPlato{
+	margin-left: 60px;
+}
+.EspacioPlato{
+	float: right;
+	margin-left: 10px;
+}
+.AlineacionBoton{
+	float: right;
+}
+.APrecioCantidad{
+	float: right;
+}
+.ListMargin{
+	margin-left: 20px;
+}
