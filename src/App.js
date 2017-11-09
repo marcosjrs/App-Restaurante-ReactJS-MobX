@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react'
 import tiendaController from './tiendaController';
 import Platos from './Platos';
+import Pedidos from './Pedidos';
 import './App.css';
 
 class App extends Component {
+
   render() {    
     return (
      <div className="container">
@@ -15,7 +17,10 @@ class App extends Component {
           <a href="#" className="btn btn-primary">Platos</a>
           <a href="#" className="btn btn-primary">Pedidos</a>
         </div>
+        <div className="contenedor-componentes-principales">
         <Platos />
+        <Pedidos />
+        </div>
      </div>
     );
   }
