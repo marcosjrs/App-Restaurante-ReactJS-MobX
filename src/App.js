@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
-import tiendaController from './tiendaController';
 import Platos from './Platos';
 import Pedidos from './Pedidos';
 import Bebidas from './Bebidas';
