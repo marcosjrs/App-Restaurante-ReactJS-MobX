@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 
 class Pedir extends Component{
     actualizarCantidad(evento){
-        console.log(this.props.identificador, evento.target.value);
         this.props.hacerPedido(this.props.identificador, evento.target.value);
     }
     render(){

@@ -3,6 +3,7 @@ import { observer } from 'mobx-react'
 import tiendaController from './tiendaController';
 import Platos from './Platos';
 import Pedidos from './Pedidos';
+import Bebidas from './Bebidas';
 import './App.css';
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
         </div>
         <div className="contenedor-componentes-principales">
         <Platos />
+        <Bebidas />
         <Pedidos />
         </div>
      </div>

@@ -1,21 +1,20 @@
 import React, {Component} from 'react';
-import './Platos.css'
 import logo from './logo.svg'
 import tiendaController from './tiendaController';
 import Pedir from './Pedir.js';
 
-class Platos extends Component{
+class Bebidas extends Component{
     constructor(){
         super();
         this.fHacerPedido = this.hacerPedido.bind(this);
     }
     hacerPedido(identificador, cantidad){
-        tiendaController.addPlatoAlPedido(identificador,cantidad)
+        tiendaController.addBebidaAlPedido(identificador,cantidad)
     }
     render(){
-        let elPlatos = [];
-        tiendaController.platos.forEach((element,index) => {
-            elPlatos.push(
+        let elBebidas = [];
+        tiendaController.bebidas.forEach((element,index) => {
+            elBebidas.push(
                 <div key={element.identificador} className="list-group-item">
                     <div className="panel-body">
                         <img role="presentation" src={logo} className="ImagenPlato"/>
@@ -24,7 +23,7 @@ class Platos extends Component{
                         <Pedir precio={element.precio} 
                         identificador={element.identificador}
                         hacerPedido={this.fHacerPedido}/>
-                        {/* hacerPedido={(identificador_d,evento_d)=>{tiendaController.addPlatoAlPedido(identificador_d,evento_d)}} */}
+                        {/* hacerPedido={(identificador_d,evento_d)=>{tiendaController.addBebidaAlPedido(identificador_d,evento_d)}} */}
                     </div>
                 </div>
             );
@@ -34,7 +33,7 @@ class Platos extends Component{
                 <div>
                     <div className="panel panel-primary">
                         <div className="list-group Plato-Menu">
-                            {elPlatos}
+                            {elBebidas}
                         </div>
                     </div>
                 </div>
@@ -43,4 +42,4 @@ class Platos extends Component{
     }
 }
 
-export default Platos;
+export default Bebidas;

@@ -6,16 +6,29 @@ class TiendaController{
             this,
             {
              platos:[
-                 {nombre:"Plato A",descripcion:"El plato n1",precio:2, cantidad:0},
-                 {nombre:"Plato B",descripcion:"El plato n2",precio:3, cantidad:0},
-                 {nombre:"Plato C",descripcion:"El plato n3",precio:4, cantidad:0}
-             ]
+                 {identificador:"1p", nombre:"Plato A",descripcion:"El plato n1",precio:2, cantidad:0},
+                 {identificador:"2p", nombre:"Plato B",descripcion:"El plato n2",precio:3, cantidad:0},
+                 {identificador:"3p", nombre:"Plato C",descripcion:"El plato n3",precio:4, cantidad:0}
+             ],
+             bebidas:[
+                {identificador:"1b", nombre:"Bebida A",descripcion:"El bebida n1",precio:2, cantidad:0},
+                {identificador:"2b", nombre:"Bebida B",descripcion:"El bebida n2",precio:3, cantidad:0},
+                {identificador:"3b", nombre:"Bebida C",descripcion:"El bebida n3",precio:4, cantidad:0}
+            ]
             }
         );
     }
-    addAlPedido(idPlato, cantidad){
-        this.platos.forEach(function(element, indice) {
-            if(indice === idPlato){
+    addPlatoAlPedido(idPlato, cantidad){
+        this.platos.forEach(function(element, identificador) {
+            if(element.identificador === idPlato){
+                element.cantidad = cantidad;
+            }
+        });
+    }
+    addBebidaAlPedido(idPlato, cantidad){
+        this.bebidas.forEach(function(element, identificador) {
+            console.log(identificador,idPlato)
+            if(element.identificador === idPlato){
                 element.cantidad = cantidad;
             }
         });
