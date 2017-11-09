@@ -3,6 +3,10 @@ import { observer } from 'mobx-react'
 import Platos from './Platos';
 import Pedidos from './Pedidos';
 import Bebidas from './Bebidas';
+
+import {render} from 'react-dom'
+import {BrowserRouter, Route, Link} from 'react-router-dom'
+
 import './App.css';
 
 class App extends Component {
@@ -12,16 +16,19 @@ class App extends Component {
      <div className="container">
         <div className="jumbotron">
           <h2>APP ReactJS y MobX</h2>
-        </div>
-        <div className="btn-group btn-group-justified">
-          <a href="#" className="btn btn-primary">Platos</a>
-          <a href="#" className="btn btn-primary">Pedidos</a>
-        </div>
-        <div className="contenedor-componentes-principales">
-        <Platos />
-        <Bebidas />
+        </div>     
+           
+        <BrowserRouter>
+          <div>
+            <div className="btn-group btn-group-justified">
+            <Link className="btn btn-primary" to="/platos">Platos</Link> <Link className="btn btn-primary" to="/bebidas">Bebidas</Link>
+            </div>
+            <Route path="/platos" component={Platos} />
+            <Route path="/bebidas" component={Bebidas} />
+          </div>
+        </BrowserRouter>
+
         <Pedidos />
-        </div>
      </div>
     );
   }

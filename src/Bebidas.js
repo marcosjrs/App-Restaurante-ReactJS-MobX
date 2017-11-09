@@ -29,7 +29,7 @@ class Bebidas extends Component{
             );
         });
         return (
-            <div className="container col-xs-6">
+            <div className="container col-xs-6 contenedor-compo-principal">
                 <div>
                     <div className="panel panel-primary">
                         <div className="list-group Plato-Menu">
