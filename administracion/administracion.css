@@ -1,0 +1,13 @@
+
+.control{
+    margin-bottom: 15px;
+}
+.control input , .control textarea{
+    display: block;
+    width: 170px;
+}
+.control input[type="submit"]{
+    display: inline-block;
+    margin-top:  20px;
+    width: 170px;
+}

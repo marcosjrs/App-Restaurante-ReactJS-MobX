@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./administracion.css">
+    <title>Pagina de administración</title>
+</head>
+<body>
+
+  <div>
+   <h3>Administración</h3>
+    <form action="#" onsubmit="submitForm()">
+      <div class="control"> Nombre: <input type="text" name="nombre" id="nombre"></div>     
+      <div class="control">Descripción: <textarea name="descripcion" id="descripcion"></textarea></div>
+      <div class="control">Precio: <input type="text" name="precio" id="precio"></div>
+      <div class="control"><input type="submit" value="Subir"></div>      
+    </form>
+  </div>
+<!-- firebase  -->
+<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script> 
+<!-- resto de scripts -->
+<script src="./index.js"></script>
+</body>
+</html>
