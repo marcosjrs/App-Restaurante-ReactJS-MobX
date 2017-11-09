@@ -7,9 +7,10 @@ import Pedir from './Pedir.js';
 class Platos extends Component{
     constructor(){
         super();
+        this.fHacerPedido = this.hacerPedido.bind(this);
     }
-    hacerPedido(evento){
-        console.log(evento.target.value);
+    hacerPedido(indice, cantidad){
+        tiendaController.addAlPedido(indice,cantidad)
     }
     render(){
         let elPlatos = [];
@@ -22,7 +23,8 @@ class Platos extends Component{
                         <div className="DescripcionPlato">{element.descripcion}</div>
                         <Pedir precio={element.precio} 
                         identificador={index}
-                        hacerPedido={(indice_d,evento_d)=>{tiendaController.addAlPedido(indice_d,evento_d)}}/>
+                        hacerPedido={this.fHacerPedido}/>
+                        {/* hacerPedido={(indice_d,evento_d)=>{tiendaController.addAlPedido(indice_d,evento_d)}} */}
                     </div>
                 </div>
             );
