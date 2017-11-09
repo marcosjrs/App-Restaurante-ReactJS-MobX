@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 class Pedidos extends Component{
     render(){
         var elPedidos = [];
+        var showPedidos = false;
         //Platos
         tiendaController.platos.forEach(function(element,index) {
             if(element.cantidad > 0){
@@ -19,6 +20,7 @@ class Pedidos extends Component{
                         </div>
                     </div>
                 );
+                showPedidos = true;
             }
         });
         //Bebidas
@@ -35,19 +37,24 @@ class Pedidos extends Component{
                         </div>
                     </div>
                 );
+                showPedidos = true;
             }
         });
-        return(
-            <div className="container col-xs-6 contenedor-compo-principal">
-            <div>
-                <div className="panel panel-primary">
-                    <div className="list-group Pedidos-Menu">
-                        {elPedidos}
+        if(showPedidos){
+            return(
+                <div className="container col-xs-6 contenedor-compo-principal">
+                <div>
+                    <div className="panel panel-primary">
+                        <div className="list-group Pedidos-Menu">
+                            {elPedidos}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        );
+            );
+        }else{
+            return(<div></div>);
+        }
     }
 }
 
