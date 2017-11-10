@@ -6,11 +6,11 @@ var config = {
     projectId: "faketienda-8313f",
     storageBucket: "faketienda-8313f.appspot.com",
     messagingSenderId: "1049862575387"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
 var database = firebase.database();
-var addPlato = function(cantidad, descripcion, nombre, precio,urlImagen){
+var addPlato = function(cantidad, descripcion, nombre, precio,imagen){
     database.ref("alimentos/").push({"cantidad":cantidad,"descripcion":descripcion,"nombre":nombre,"precio":precio, "imagen":imagen});
 }
 
@@ -30,7 +30,7 @@ function visualizarImg(){
         }
         lector.readAsDataURL(archivo); //con lector leemos, el files[0] de input[type=file]
         
-        //subimos el archivo
+        
         var uploadTask = storageRef.child('platos/' + archivo.name).put(archivo);
         uploadTask.on('state_changed', function(snapshot){
             console.log(snapshot.state+": "+((snapshot.bytesTransferred / snapshot.totalBytes) * 100) + '% Cargado.');
@@ -53,7 +53,33 @@ function submitForm(){
     addPlato(0,descripcion,nombre,precio,urlImg);
 }
 
-//leer platos existentes
+//Leer platos existentes
+
+function imprimirPlatos(){
+    //base datos -> tablas   ... tabla[0]->objetos
+    var databaseAlimentos = database.ref('alimentos/');
+    var ul = document.getElementById("lista");
+    databaseAlimentos.on('value', function(tabla) { 
+        console.log(tabla.key);  // nombre de la tabla  
+        tabla.forEach(function(objeto){
+            //objeto puede ser un plato, pero en el futuro pueden ser bebidas, etc... 
+            var datosObjeto = objeto.toJSON(); //objeto.key sería el nombre del objeto, creado aleatoriamente cuando creamos el plato
+            
+            var li = document.createElement("li");
+            var div = document.createElement("div");
+            var img = document.createElement("img");
+
+            img.src = datosObjeto.imagen;
+            img.alt = "Imagen de plato "+datosObjeto.nombre;
+
+            div.appendChild(img);
+            li.appendChild(div);
+            li.appendChild(document.createTextNode("~ "+datosObjeto.nombre+" ~"));
+            ul.appendChild(li);
+        });
+    });
+}
+
 
 
 //eliminar platos

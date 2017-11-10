@@ -1,9 +1,12 @@
 
+.menu{
+    margin-bottom: 35px;
+}
 .control{
     margin-bottom: 15px;
 }
 .control img{
-    height: 350px;
+    width: 320px;
     margin-top: 20px;
 }
 .control input , .control textarea{
@@ -14,4 +17,12 @@
     display: inline-block;
     margin: 20px 50px;
     width: 200px;
+}
+
+#lista img{
+    height: 60px;
+}
+
+ul li{
+    list-style-type: none;
 }
