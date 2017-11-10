@@ -66,15 +66,32 @@ function imprimirPlatos(){
             var datosObjeto = objeto.toJSON(); //objeto.key sería el nombre del objeto, creado aleatoriamente cuando creamos el plato
             
             var li = document.createElement("li");
+            li.setAttribute("class","list-group-item");
             var div = document.createElement("div");
+            div.setAttribute("class","container-img");
             var img = document.createElement("img");
-
+            
+            //Imagen
             img.src = datosObjeto.imagen;
-            img.alt = "Imagen de plato "+datosObjeto.nombre;
-
+            img.alt = "Imagen de plato "+datosObjeto.nombre;           
             div.appendChild(img);
             li.appendChild(div);
-            li.appendChild(document.createTextNode("~ "+datosObjeto.nombre+" ~"));
+
+            //nombre, descripcion y precio
+            var divNombre = document.createElement("div");
+            var newContent = document.createTextNode(datosObjeto.nombre); 
+            divNombre.appendChild(newContent);
+            li.appendChild(divNombre); 
+
+            var divDesc = document.createElement("div");
+            divDesc.appendChild( document.createTextNode(datosObjeto.descripcion) );
+            li.appendChild(divDesc); 
+
+            var divPrecio = document.createElement("div");
+            divPrecio.appendChild( document.createTextNode(datosObjeto.precio+" €") );
+            li.appendChild(divPrecio);             
+           
+
             ul.appendChild(li);
         });
     });

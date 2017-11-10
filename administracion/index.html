@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./administracion.css">
-    <title>Pagina de administración</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="./administracion.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  <title>Pagina de administración</title>
 </head>
+
 <body>
 
-  <div>   
-   <div class="menu">
-    <a href="index.html">Administración</a> <a href="platos.html">Visualización</a>
-  </div>
-  <h3>Administración</h3>
-   <div class="control">
-     <input type="file" name="imagen" onchange="visualizarImg()">
-     <img src="" alt="Imagen del plato subido" id="imgPlato">
-   </div>
+  <div class="container">
+    <div class="menu">
+      <a href="index.html">Administración</a> |
+      <a href="platos.html">Visualización</a>
+    </div>
+    <div class="jumbotron">
+      <h3>Administración</h3>
+    </div>
+    <div class="control">
+      <input type="file" name="imagen" onchange="visualizarImg()">
+      <img src="" alt="Imagen del plato subido" id="imgPlato">
+    </div>
     <form onsubmit="submitForm()">
-      <div class="control"> Nombre: <input type="text" name="nombre" id="nombre" required></div>     
-      <div class="control">Descripción: <textarea name="descripcion" id="descripcion" required></textarea></div>
-      <div class="control">Precio: <input type="text" name="precio" id="precio" required></div>
-      <div class="control">Imagen: <input type="text" name="urlImagen" id="urlImagen" required></div>
-      <div class="control"><input type="submit" value="Subir"></div>      
+      <div class="control"> Nombre:
+        <input class="form-control" type="text" name="nombre" id="nombre" required>
+      </div>
+      <div class="control">Descripción:
+        <textarea class="form-control" name="descripcion" id="descripcion" required></textarea>
+      </div>
+      <div class="control">Precio:
+        <input class="form-control" type="text" name="precio" id="precio" required>
+      </div>
+      <div class="control">Imagen:
+        <input class="form-control" type="text" name="urlImagen" id="urlImagen" required>
+      </div>
+      <div class="control">
+        <input type="submit" class="col-xs-offset-3 col-xs-6 btn btn-primary" value="Subir">
+      </div>
     </form>
   </div>
-<!-- firebase  -->
-<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script> 
-<!-- resto de scripts -->
-<script src="./index.js"></script>
+  <!-- firebase  -->
+  <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+  <!-- resto de scripts -->
+  <script src="./index.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+
 </body>
+
 </html>
