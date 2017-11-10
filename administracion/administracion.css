@@ -12,14 +12,15 @@
     margin-top: 20px;
 }
 
-ul li{
-    height: 100px;
-}
 
 ul li img{
-    height: 80px;
+    height: 100px;
 }
 
 ul li .container-img{
     float: right;
+}
+
+ul li .btn{
+    margin-top:10px;
 }
