@@ -13,13 +13,19 @@ var database = firebase.database();
 var databaseAlimentos = database.ref('alimentos/');
 
 var addPlato = function (cantidad, descripcion, nombre, precio, imagen) {
-    databaseAlimentos.push({
-        "cantidad": cantidad,
-        "descripcion": descripcion,
-        "nombre": nombre,
-        "precio": precio,
-        "imagen": imagen
-    });
+    try {
+        databaseAlimentos.push({
+            "cantidad": cantidad,
+            "descripcion": descripcion,
+            "nombre": nombre,
+            "precio": precio,
+            "imagen": imagen
+        });
+        alert("Añadido correctamente un nuevo Plato");
+    } catch (error) {
+        console.log("Error al intentar añadir un nuevo plato. ",error);
+    }
+    
 }
 
 //Crear platos
