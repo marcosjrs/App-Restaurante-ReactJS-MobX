@@ -12,6 +12,44 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var databaseAlimentos = database.ref('alimentos/');
 
+
+//Login
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        console.log("[Usuario logado]");
+    } else {
+        if(window.location.pathname !== "/index.html"){ //Usuario deslogado
+            window.location = "index.html";
+        }
+    }
+});
+
+function login() {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("pass").value;
+    firebase.auth().signInWithEmailAndPassword(email, password).
+    then(function () {
+        window.location = "agregar.html";
+    }).
+    catch(function (error) {
+        console.log("Error al logarse", error);
+    });
+
+}
+
+function logout() {
+    firebase.auth().signOut().then(function () {
+        console.log("Deslogado Correctamente");
+    }).catch(function (error) {
+        console.log("Error al deslogarse", error);
+    });
+}
+
+//Crear platos
+var storage = firebase.storage();
+var storageRef = storage.ref();
+
 var addPlato = function (cantidad, descripcion, nombre, precio, imagen) {
     try {
         databaseAlimentos.push({
@@ -23,14 +61,9 @@ var addPlato = function (cantidad, descripcion, nombre, precio, imagen) {
         });
         alert("Añadido correctamente un nuevo Plato");
     } catch (error) {
-        console.log("Error al intentar añadir un nuevo plato. ",error);
+        console.log("Error al intentar añadir un nuevo plato. ", error);
     }
-    
 }
-
-//Crear platos
-var storage = firebase.storage();
-var storageRef = storage.ref();
 
 function visualizarImg() {
     var preview = document.querySelector("img");
@@ -70,6 +103,7 @@ function submitForm() {
 //Leer platos existentes
 
 function imprimirPlatos() {
+    console.log("> Imprimiendo platos")
 
     var ul = document.getElementById("lista");
     while (ul.hasChildNodes()) { //borrar los que tuviera anteriormente.

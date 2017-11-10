@@ -10,26 +10,30 @@
   <link rel="stylesheet" href="./administracion.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
-  <title>Login página de administración</title>
+  <title>Pagina de administración: Platos</title>
 </head>
 
 <body>
 
-  <div class="container container-login vcenter">
-    <div id="login">
-      Email: 
-      <input type="email" id="email" class="form-control">
-      Contraseña: 
-      <input type="password" name="pass" id="pass" class="form-control">
-      <Button class="btn btn-primary" onclick="login()">Entrar</Button>
+  <div class="container">
+    <div class="menu">
+      <a href="agregar.html">Administración</a> |
+      <span>Visualización</span> | 
+      <a href="javascript:logout();">Deslogarse</a>
     </div>
+    <div class="jumbotron">
+      <h3>Visualización de Platos Disponibles</h3>
+    </div>
+    <ul id="lista" class="list-group"></ul>
   </div>
-    
+
   <!-- firebase  -->
   <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
   <!-- resto de scripts -->
   <script src="./index.js"></script>
+  <script src="./platos.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap.native@2.0.15/dist/bootstrap-native-v4.min.js"></script>
+
 
 </body>
 

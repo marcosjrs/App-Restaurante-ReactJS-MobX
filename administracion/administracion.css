@@ -1,4 +1,25 @@
+/*pantalla login*/
+ 
+.vcenter {
+   position: absolute;
+   top:50%;
+   width: 50%;
+   min-width: 200px;
+   margin-top:-175px;
+   margin-left: 24%;
+ }
 
+#login input{
+    margin-bottom: 15px;
+}
+#login button{
+    width: 70%;
+    margin-left: 15%;
+    text-align: center;
+}
+
+
+/* pantalla agregar*/
 .menu{
     margin:15px 0 25px 0;
 }
@@ -12,6 +33,7 @@
     margin-top: 20px;
 }
 
+/* pantalla visualizar */
 
 ul li img{
     height: 100px;
