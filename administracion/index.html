@@ -11,10 +11,15 @@
 
   <div>
    <h3>Administración</h3>
+   <div class="control">
+     <input type="file" name="imagen" onchange="visualizarImg()">
+     <img src="" alt="Imagen del plato subido" id="imgPlato">
+   </div>
     <form action="#" onsubmit="submitForm()">
-      <div class="control"> Nombre: <input type="text" name="nombre" id="nombre"></div>     
-      <div class="control">Descripción: <textarea name="descripcion" id="descripcion"></textarea></div>
-      <div class="control">Precio: <input type="text" name="precio" id="precio"></div>
+      <div class="control"> Nombre: <input type="text" name="nombre" id="nombre" required></div>     
+      <div class="control">Descripción: <textarea name="descripcion" id="descripcion" required></textarea></div>
+      <div class="control">Precio: <input type="text" name="precio" id="precio" required></div>
+      <div class="control">Imagen: <input type="text" name="urlImagen" id="urlImagen" required></div>
       <div class="control"><input type="submit" value="Subir"></div>      
     </form>
   </div>
