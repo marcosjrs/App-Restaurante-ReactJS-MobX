@@ -51,18 +51,17 @@ var storage = firebase.storage();
 var storageRef = storage.ref();
 
 var addPlato = function (cantidad, descripcion, nombre, precio, imagen) {
-    try {
-        databaseAlimentos.push({
-            "cantidad": cantidad,
-            "descripcion": descripcion,
-            "nombre": nombre,
-            "precio": precio,
-            "imagen": imagen
-        });
-        alert("Añadido correctamente un nuevo Plato");
-    } catch (error) {
-        console.log("Error al intentar añadir un nuevo plato. ", error);
-    }
+    databaseAlimentos.push({
+        "cantidad": cantidad,
+        "descripcion": descripcion,
+        "nombre": nombre,
+        "precio": precio,
+        "imagen": imagen
+    }).then(function(){
+        window.location = "agregar.html"; // "Agregado correctamente" 
+    }).catch(function(err){
+        alert("No se ha podido agregar el plato. "+err);
+    });
 }
 
 function visualizarImg() {
@@ -92,7 +91,8 @@ function visualizarImg() {
     }
 }
 
-function submitForm() {
+function submitForm(evento) {
+    evento.preventDefault();
     var nombre = document.getElementById("nombre").value;
     var descripcion = document.getElementById("descripcion").value;
     var precio = document.getElementById("precio").value;

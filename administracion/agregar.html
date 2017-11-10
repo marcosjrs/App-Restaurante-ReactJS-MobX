@@ -28,7 +28,7 @@
       <input type="file" name="imagen" onchange="visualizarImg()">
       <img src="" alt="Imagen del plato subido" id="imgPlato">
     </div>
-    <form onsubmit="submitForm()">
+    <form onsubmit="return submitForm(event)">
       <div class="control"> Nombre:
         <input class="form-control" type="text" name="nombre" id="nombre" required>
       </div>
