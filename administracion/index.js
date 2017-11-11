@@ -1,4 +1,6 @@
-//Firebase
+/****************************
+ * CONFIGURACIÓN de Firebase
+ *****************************/
 var config = {
     apiKey: "AIzaSyBgOciD_LzNUkQHlkQHiJZibIbGYeJpa8E",
     authDomain: "faketienda-8313f.firebaseapp.com",
@@ -8,11 +10,12 @@ var config = {
     messagingSenderId: "1049862575387"
 };
 firebase.initializeApp(config);
-
 var database = firebase.database();
 
 
-//Login
+/**********
+ * LOGIN
+ *********/
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -45,7 +48,12 @@ function logout() {
     });
 }
 
-//Crear Tipo ( "plato" , "bebida", ... ). Véase "tipo" como instancia, objeto de una tabla determinada (la tabla se llamará platos, bebida, etc...)  de la BBDD "faketienda"
+
+
+/*********
+ * CREAR
+ *********/
+
 var storage = firebase.storage();
 var storageRef = storage.ref();
 /**
@@ -57,7 +65,7 @@ var storageRef = storage.ref();
  * @param {*} precio 
  * @param {*} imagen 
  */
-var addTipo = function (tipo, cantidad, descripcion, nombre, precio, imagen) {
+var crear = function (cantidad, descripcion, nombre, precio, imagen) {
     database.ref(tipo+'s/').push({
         "cantidad": cantidad,
         "descripcion": descripcion,
@@ -75,7 +83,7 @@ var addTipo = function (tipo, cantidad, descripcion, nombre, precio, imagen) {
  * Visualiza la imagen seleccionada y la sube automáticamente al firebase.
  * @param {*} tipo Se subira la imagen a carpeta de almacenamiento en el firebase con este nombre en plural quedando "platos" o "bebidas" o...
  */
-function visualizarImg(tipo) {
+function visualizarImg() {
     var preview = document.querySelector("img");
     var archivo = document.querySelector("input[type=file]").files[0];
 
@@ -102,21 +110,24 @@ function visualizarImg(tipo) {
     }
 }
 
-function submitForm(tipo, evento) {
+function submitForm(evento) {
     evento.preventDefault();
     var nombre = document.getElementById("nombre").value;
     var descripcion = document.getElementById("descripcion").value;
     var precio = document.getElementById("precio").value;
     var urlImg = document.getElementById("urlImagen").value;
-    addTipo(tipo, 0, descripcion, nombre, precio, urlImg);
+    crear(0, descripcion, nombre, precio, urlImg);
 }
 
-//Leer elementos existentes
+/****************************
+ * LEER elementos existentes
+ ***************************/
+
 /**
  * Imprimir todos los elementos dentro de una "tabla" determinada. 
  * @param {*} tipo "plato" o "bebida" o ...
  */
-function imprimirTipos(tipo) {
+function imprimir() {
     console.log("> Imprimiendo la colección de "+tipo+"s");
 
     var ul = document.getElementById("lista");
@@ -160,7 +171,7 @@ function imprimirTipos(tipo) {
             var divBtnDel = document.createElement("button");
             divBtnDel.setAttribute("class", "btn btn-danger btn-sm");
             divBtnDel.setAttribute("id", objeto.key);
-            divBtnDel.setAttribute("onclick", "eliminarObjeto('"+tipo+"', this.id)");
+            divBtnDel.setAttribute("onclick", "eliminar(this.id)");
             divBtnDel.appendChild(document.createTextNode("Borrar"));
             li.appendChild(divBtnDel);
 
@@ -170,19 +181,22 @@ function imprimirTipos(tipo) {
     });
 }
 
+/**********
+ * ELIMINAR
+ *********/
 
 /**
  * Eliminar un objeto de la tabla
  * @param {*} tipo "plato" o "bebida" o ...
  * @param {*} idObjeto  Es el nombre del objeto dentro de la tabla
  */
-function eliminarObjeto(tipo, idObjeto) {
+function eliminar(idObjeto) {
     var res = confirm("¿Estas seguro que quieres borrar el objeto: " + idObjeto + "?");
     if (res) {
         var objBorrar = firebase.database().ref(tipo+'s/' + idObjeto);
         objBorrar.remove()
             .then(function () {
-                imprimirTipos(tipo);
+                imprimir();
                 console.log("Borrado correctamente.")
             })
             .catch(function (error) {
@@ -190,3 +204,25 @@ function eliminarObjeto(tipo, idObjeto) {
             });
     }
 }
+
+/**********
+ * GENERAL
+ ***********/
+
+var tipo = "plato"; //nombre de tabla y de carpeta de storage del firebase a donde sobre el que se hará CRUD
+function cambiarTipo(nuevoTipo,recargar){
+    actualizarMenu(nuevoTipo);
+    tipo = nuevoTipo;
+    if(recargar){
+        imprimir();
+    }
+    return true;
+}
+
+function actualizarMenu(nuevoTipo){
+    if(tipo != nuevoTipo && (document.getElementsByClassName("select-"+tipo)[0] != undefined) ){
+        document.getElementsByClassName("select-"+tipo)[0].className = document.getElementsByClassName("select-"+tipo)[0].className.split("active").join("");
+        document.getElementsByClassName("select-"+nuevoTipo)[0].className = document.getElementsByClassName("select-"+nuevoTipo)[0].className+" active";
+    }
+}
+

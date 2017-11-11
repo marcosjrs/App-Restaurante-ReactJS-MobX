@@ -23,12 +23,16 @@
     </div>
     <div class="jumbotron">
       <h3>Administración</h3>
+    </div>    
+    <div class="submenu">
+        <button class="select-plato btn active" onclick="return cambiarTipo('plato');">Platos</button>
+        <button class="select-bebida btn" onclick="return cambiarTipo('bebida');">Bebidas</button>
     </div>
     <div class="control">
-      <input type="file" name="imagen" onchange="visualizarImg('plato')">
-      <img src="" alt="Imagen del plato subido" id="imgPlato">
+      <input type="file" name="imagen" onchange="visualizarImg()">
+      <img src="" alt="Imagen subida" id="imgPlato">
     </div>
-    <form onsubmit="return submitForm('plato',event)">
+    <form onsubmit="return submitForm(event)">
       <div class="control"> Nombre:
         <input class="form-control" type="text" name="nombre" id="nombre" required>
       </div>

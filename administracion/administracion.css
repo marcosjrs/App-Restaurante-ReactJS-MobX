@@ -23,6 +23,11 @@
 .menu{
     margin:15px 0 25px 0;
 }
+
+.submenu{
+    margin:-15px 0 25px 0;
+}
+
 .control{
     margin-bottom: 15px;
 }
@@ -34,7 +39,6 @@
 }
 
 /* pantalla visualizar */
-
 ul li img{
     height: 100px;
 }
@@ -45,4 +49,8 @@ ul li .container-img{
 
 ul li .btn{
     margin-top:10px;
+}
+
+.btn:focus {
+    outline: none!important;
 }
