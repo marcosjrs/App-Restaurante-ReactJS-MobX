@@ -10,7 +10,6 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-var databaseAlimentos = database.ref('alimentos/');
 
 
 //Login
@@ -19,7 +18,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         console.log("[Usuario logado]");
     } else {
-        if(window.location.pathname !== "/index.html"){ //Usuario deslogado
+        if(window.location.pathname.indexOf( "/index.html") < 0 ){ //Usuario deslogado
             window.location = "index.html";
         }
     }
@@ -46,12 +45,20 @@ function logout() {
     });
 }
 
-//Crear platos
+//Crear Tipo ( "plato" , "bebida", ... ). Véase "tipo" como instancia, objeto de una tabla determinada (la tabla se llamará platos, bebida, etc...)  de la BBDD "faketienda"
 var storage = firebase.storage();
 var storageRef = storage.ref();
-
-var addPlato = function (cantidad, descripcion, nombre, precio, imagen) {
-    databaseAlimentos.push({
+/**
+ * 
+ * @param {*} tipo "Tabla" dentro de la BBDD. Puede ser "plato" o "bebida" o ...
+ * @param {*} cantidad 
+ * @param {*} descripcion 
+ * @param {*} nombre 
+ * @param {*} precio 
+ * @param {*} imagen 
+ */
+var addTipo = function (tipo, cantidad, descripcion, nombre, precio, imagen) {
+    database.ref(tipo+'s/').push({
         "cantidad": cantidad,
         "descripcion": descripcion,
         "nombre": nombre,
@@ -60,11 +67,15 @@ var addPlato = function (cantidad, descripcion, nombre, precio, imagen) {
     }).then(function(){
         window.location = "agregar.html"; // "Agregado correctamente" 
     }).catch(function(err){
-        alert("No se ha podido agregar el plato. "+err);
+        alert("No se ha podido agregar el "+tipo+". "+err);
     });
 }
 
-function visualizarImg() {
+/**
+ * Visualiza la imagen seleccionada y la sube automáticamente al firebase.
+ * @param {*} tipo Se subira la imagen a carpeta de almacenamiento en el firebase con este nombre en plural quedando "platos" o "bebidas" o...
+ */
+function visualizarImg(tipo) {
     var preview = document.querySelector("img");
     var archivo = document.querySelector("input[type=file]").files[0];
 
@@ -77,7 +88,7 @@ function visualizarImg() {
         lector.readAsDataURL(archivo); //con lector leemos, el files[0] de input[type=file]
 
 
-        var uploadTask = storageRef.child('platos/' + archivo.name).put(archivo);
+        var uploadTask = storageRef.child(tipo+'s/' + archivo.name).put(archivo); 
         uploadTask.on('state_changed', function (snapshot) {
             console.log(snapshot.state + ": " + ((snapshot.bytesTransferred / snapshot.totalBytes) * 100) + '% Cargado.');
         }, function (error) {
@@ -91,31 +102,34 @@ function visualizarImg() {
     }
 }
 
-function submitForm(evento) {
+function submitForm(tipo, evento) {
     evento.preventDefault();
     var nombre = document.getElementById("nombre").value;
     var descripcion = document.getElementById("descripcion").value;
     var precio = document.getElementById("precio").value;
     var urlImg = document.getElementById("urlImagen").value;
-    addPlato(0, descripcion, nombre, precio, urlImg);
+    addTipo(tipo, 0, descripcion, nombre, precio, urlImg);
 }
 
-//Leer platos existentes
-
-function imprimirPlatos() {
-    console.log("> Imprimiendo platos")
+//Leer elementos existentes
+/**
+ * Imprimir todos los elementos dentro de una "tabla" determinada. 
+ * @param {*} tipo "plato" o "bebida" o ...
+ */
+function imprimirTipos(tipo) {
+    console.log("> Imprimiendo la colección de "+tipo+"s");
 
     var ul = document.getElementById("lista");
     while (ul.hasChildNodes()) { //borrar los que tuviera anteriormente.
         ul.removeChild(ul.firstChild);
     }
 
-    //base datos -> tablas   ... tabla[0]->objetos
-    databaseAlimentos.on('value', function (tabla) {
+    //base datos -> tablas   ... tabla[0]->objetos . Ej.: faketienda -> platos  ... platos[0] -> {nombre:dlfksdsad, precio:2, ...}
+    database.ref(tipo+'s/').on('value', function (tabla) {
         console.log(tabla.key); // nombre de la tabla  
         tabla.forEach(function (objeto) {
-            //objeto puede ser un plato, pero en el futuro pueden ser bebidas, etc... 
-            var datosObjeto = objeto.toJSON(); //objeto.key sería el nombre del objeto, creado aleatoriamente cuando creamos el plato
+            //objeto puede ser un plato, bebida, etc... 
+            var datosObjeto = objeto.toJSON(); //objeto.key sería el nombre del objeto, creado aleatoriamente cuando creamos el plato, bebida o el tipo que sea
 
             var li = document.createElement("li");
             li.setAttribute("class", "list-group-item");
@@ -125,7 +139,7 @@ function imprimirPlatos() {
 
             //Imagen
             img.src = datosObjeto.imagen;
-            img.alt = "Imagen de plato " + datosObjeto.nombre;
+            img.alt = "Imagen de "+tipo+" " + datosObjeto.nombre;
             div.appendChild(img);
             li.appendChild(div);
 
@@ -146,7 +160,7 @@ function imprimirPlatos() {
             var divBtnDel = document.createElement("button");
             divBtnDel.setAttribute("class", "btn btn-danger btn-sm");
             divBtnDel.setAttribute("id", objeto.key);
-            divBtnDel.setAttribute("onclick", "eliminarPlato(this.id)");
+            divBtnDel.setAttribute("onclick", "eliminarObjeto('"+tipo+"', this.id)");
             divBtnDel.appendChild(document.createTextNode("Borrar"));
             li.appendChild(divBtnDel);
 
@@ -159,15 +173,16 @@ function imprimirPlatos() {
 
 /**
  * Eliminar un objeto de la tabla
+ * @param {*} tipo "plato" o "bebida" o ...
  * @param {*} idObjeto  Es el nombre del objeto dentro de la tabla
  */
-function eliminarPlato(idObjeto) {
+function eliminarObjeto(tipo, idObjeto) {
     var res = confirm("¿Estas seguro que quieres borrar el objeto: " + idObjeto + "?");
     if (res) {
-        var objBorrar = firebase.database().ref('alimentos/' + idObjeto);
+        var objBorrar = firebase.database().ref(tipo+'s/' + idObjeto);
         objBorrar.remove()
             .then(function () {
-                imprimirPlatos();
+                imprimirTipos(tipo);
                 console.log("Borrado correctamente.")
             })
             .catch(function (error) {
