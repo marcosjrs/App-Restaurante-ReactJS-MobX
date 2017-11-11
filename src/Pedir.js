@@ -6,11 +6,12 @@ class Pedir extends Component{
     }
     render(){
         return (
-            <div>
-                <br />
-                <label>Cantidad: </label>
-                <input type="number" min="0" max="20" onChange={this.actualizarCantidad.bind(this)}/>
-                <label className="EspacioPlato">Precio: {this.props.precio} </label>
+            <div className="component-pedir">
+                <div className="container-cantidad">
+                    <label>Cantidad: </label>
+                    <input type="number" min="0" max="20" onChange={this.actualizarCantidad.bind(this)}/>
+                </div>
+                <div className="container-precio">Precio: {this.props.precio} </div>
             </div>
         );
     }

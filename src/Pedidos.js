@@ -12,10 +12,10 @@ class Pedidos extends Component{
                 elPedidos.push(
                     <div key={element.identificador} className="list-group-item">
                         <div className="panel-body">
-                            <h4 className="TitlePlato">{element.nombre}</h4>
-                            <div className="APrecioCantidad">
+                            <h4 className="title">{element.nombre}</h4>
+                            <div className="container-cantidadprecio">
                                 <span>{element.cantidad}</span>
-                                <span className="PrecioPlato">Precio: {element.cantidad * element.precio}</span>                        
+                                <span className="precio">Precio: {element.cantidad * element.precio}</span>                        
                             </div>
                         </div>
                     </div>
@@ -29,10 +29,10 @@ class Pedidos extends Component{
                 elPedidos.push(
                     <div key={element.identificador} className="list-group-item">
                         <div className="panel-body">
-                            <h4 className="TitlePlato">{element.nombre}</h4>
-                            <div className="APrecioCantidad">
+                            <h4 className="title">{element.nombre}</h4>
+                            <div className="container-cantidadprecio">
                                 <span>{element.cantidad}</span>
-                                <span className="PrecioPlato">Precio: {element.cantidad * element.precio}</span>                        
+                                <span className="precio">Precio: {element.cantidad * element.precio}</span>                        
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@ class Pedidos extends Component{
                 <div className="container col-xs-6 contenedor-compo-principal">
                 <div>
                     <div className="panel panel-primary">
-                        <div className="list-group Pedidos-Menu">
+                        <div className="list-group pedidos">
                             {elPedidos}
                         </div>
                     </div>

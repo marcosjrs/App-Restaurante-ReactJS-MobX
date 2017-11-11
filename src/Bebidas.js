@@ -18,9 +18,9 @@ class Bebidas extends Component{
             elBebidas.push(
                 <div key={element.identificador} className="list-group-item">
                     <div className="panel-body">
-                        <img role="presentation" src={logo} className="ImagenPlato"/>
-                        <h2 className="TitlePlato">{element.nombre}</h2>
-                        <div className="DescripcionPlato">{element.descripcion}</div>
+                        <img role="presentation" src={element.imagen} className="imagen"/>
+                        <h4 className="title">{element.nombre}</h4>
+                        <div className="descripcion">{element.descripcion}</div>
                         <Pedir precio={element.precio} 
                         identificador={element.identificador}
                         hacerPedido={this.fHacerPedido}/>
@@ -33,7 +33,7 @@ class Bebidas extends Component{
             <div className="container col-xs-6 contenedor-compo-principal">
                 <div>
                     <div className="panel panel-primary">
-                        <div className="list-group Plato-Menu">
+                        <div className="list-group item-menu">
                             {elBebidas}
                         </div>
                     </div>
