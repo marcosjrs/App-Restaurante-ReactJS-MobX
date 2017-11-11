@@ -6,6 +6,7 @@
     "react-scripts": "0.2.3"
   },
   "dependencies": {
+    "react-scripts": "0.2.3",
     "bootstrap": "^3.3.7",
     "firebase": "^4.6.2",
     "mobx": "^2.5.0",
