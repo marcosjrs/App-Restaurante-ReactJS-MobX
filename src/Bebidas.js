@@ -33,7 +33,7 @@ class Bebidas extends Component{
             <div className="container col-xs-6 contenedor-compo-principal">
                 <div>
                     <div className="panel panel-primary">
-                        <div className="list-group item-menu">
+                        <div className="list-group lista-items">
                             {elBebidas}
                         </div>
                     </div>

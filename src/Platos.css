@@ -1,11 +1,4 @@
-.imagen{
-	height: 80px;
-	width: 80px;
-	margin-right: 4px;
-	margin-bottom: 4px;
-	float: left;
-}
-.item-menu{
+.lista-items{
 	max-height: 500px;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -15,6 +8,13 @@
 	overflow-y: auto;
 	overflow-x: hidden;
 }
+.imagen{
+	height: 80px;
+	width: 80px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	float: left;
+}
 .title{
 	margin-top: 0;
 	text-align: left;
@@ -22,15 +22,20 @@
 .container-cantidad {
     margin-top: 4px;
 }
-.descripcion{
-	text-align: justify;
+.container-cantidad label {
+	margin-right: 3px;
 }
-.precio{
-	margin-left: 60px;
-}
+
 .container-precio{
 	float: right;
 }
 .container-cantidadprecio{
 	float: right;
 }
+.descripcion{
+	text-align: justify;
+}
+.precio{
+	margin-left: 60px;
+}
+
