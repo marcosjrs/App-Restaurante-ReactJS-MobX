@@ -136,7 +136,7 @@ function imprimir() {
     }
 
     //base datos -> tablas   ... tabla[0]->objetos . Ej.: faketienda -> platos  ... platos[0] -> {nombre:dlfksdsad, precio:2, ...}
-    database.ref(tipo+'s/').on('value', function (tabla) {
+    database.ref(tipo+'s/').once('value', function (tabla) {
         console.log(tabla.key); // nombre de la tabla  
         tabla.forEach(function (objeto) {
             //objeto puede ser un plato, bebida, etc... 
