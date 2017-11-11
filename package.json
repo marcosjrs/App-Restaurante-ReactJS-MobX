@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "firebase": "^4.6.2",
     "mobx": "^2.5.0",
     "mobx-react": "^3.5.5",
     "mobx-react-devtools": "^4.2.5",
