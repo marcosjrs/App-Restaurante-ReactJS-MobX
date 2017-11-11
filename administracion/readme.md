@@ -11,3 +11,7 @@ A continuación nos situamos en esta carpeta (en "administración") y arrancamos
 Se abre la siguiente url en el navegador:
 
 > http://127.0.0.1:8080
+
+Para añadir un nuevo tipo (actualmente hay bebidas y platos) solo hace falta añadir un nuevo botón al menu de visualizar.html y agregar.html con el texto del nuevo tipo, por ejemplo postre sería:
+
+> <button class="select-bebida btn btn-default" onclick="return cambiarTipo('postre');">postre</button>
