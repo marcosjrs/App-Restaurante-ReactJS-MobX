@@ -3,6 +3,7 @@ import './Platos.css'
 import logo from './logo.svg'
 import tiendaController from './tiendaController';
 import Pedir from './Pedir.js';
+import { observer } from 'mobx-react'
 
 class Platos extends Component{
     constructor(){
@@ -43,4 +44,4 @@ class Platos extends Component{
     }
 }
 
-export default Platos;
+export default observer(Platos);;

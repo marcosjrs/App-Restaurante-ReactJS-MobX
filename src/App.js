@@ -4,8 +4,7 @@ import Platos from './Platos';
 import Pedidos from './Pedidos';
 import Bebidas from './Bebidas';
 
-import {render} from 'react-dom'
-import {BrowserRouter, Route, Link} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom';
 
 import './App.css';
 

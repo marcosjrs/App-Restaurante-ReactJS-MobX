@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg'
 import tiendaController from './tiendaController';
 import Pedir from './Pedir.js';
+import { observer } from 'mobx-react'
 
 class Bebidas extends Component{
     constructor(){
@@ -42,4 +43,4 @@ class Bebidas extends Component{
     }
 }
 
-export default Bebidas;
+export default observer(Bebidas);;

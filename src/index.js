@@ -4,7 +4,6 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-import {render} from 'react-dom';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 const enrutador =  (
